@@ -5,35 +5,35 @@ from Bio.Data import CodonTable
 
 # Funkcija nuskaityti faila
 def read_fasta(filename):
-    for seq_record in SeqIO.parse(filename, "fasta"):
-        return seq_record
+    for sequence in SeqIO.parse(filename, "fasta"):
+        return sequence
 # Funkcija padaryti 6 frames ir tripletus
-def get_triplets(seq_record):
+def get_triplets(sequence):
     frames = []
-    frames.append([seq_record.seq[i:i + 3] for i in range(0, len(seq_record.seq), 3)])
-    frames.append([seq_record.seq[i:i + 3] for i in range(1, len(seq_record.seq), 3)])
-    frames.append([seq_record.seq[i:i + 3] for i in range(2, len(seq_record.seq), 3)])
-    frames.append([seq_record.seq.reverse_complement()[i:i + 3] for i in range(0, len(seq_record.seq), 3)])
-    frames.append([seq_record.seq.reverse_complement()[i:i + 3] for i in range(1, len(seq_record.seq), 3)])
-    frames.append([seq_record.seq.reverse_complement()[i:i + 3] for i in range(2, len(seq_record.seq), 3)])
+    frames.append([sequence.seq[i:i + 3] for i in range(0, len(sequence.seq), 3)])
+    frames.append([sequence.seq[i:i + 3] for i in range(1, len(sequence.seq), 3)])
+    frames.append([sequence.seq[i:i + 3] for i in range(2, len(sequence.seq), 3)])
+    frames.append([sequence.seq.reverse_complement()[i:i + 3] for i in range(0, len(sequence.seq), 3)])
+    frames.append([sequence.seq.reverse_complement()[i:i + 3] for i in range(1, len(sequence.seq), 3)])
+    frames.append([sequence.seq.reverse_complement()[i:i + 3] for i in range(2, len(sequence.seq), 3)])
     return frames
 # Funkcija rasti kodonus su ATG pradzia ir TAA arba TAG arba TGA pabaigomis
-def find_codon(seq_record):
+def find_codon(sequence):
     i = 0
-    codon_list = []
-    while i < len(seq_record):
-        if seq_record[i] == 'ATG':
-            start_pos = i
+    good_sequences = []
+    while i < len(sequence):
+        if sequence[i] == 'ATG':
+            starting_place = i
             j = i
-            while j < len(seq_record):
-                if seq_record[j] == 'TAA' or seq_record[j] == 'TAG' or seq_record[j] == 'TGA':
-                    end_pos = j
-                    codon_list.append(''.join(str(e) for e in seq_record[start_pos:end_pos + 1]))
+            while j < len(sequence):
+                if sequence[j] == 'TAA' or sequence[j] == 'TAG' or sequence[j] == 'TGA':
+                    ending_place = j
+                    good_sequences.append(''.join(str(e) for e in sequence[starting_place:ending_place + 1]))
                     i = j
                     break
                 j += 1
         i += 1
-    return codon_list
+    return good_sequences
 
 def find_codons(triplets):
     codons = []
