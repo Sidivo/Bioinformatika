@@ -1,0 +1,13 @@
+Sveiki, dėstytojau,
+
+Sugebėjau atlikti pirmus 3 punktus: 
+
+Viską naudojau tik vienam .facta failui. Nesugebėjau kitų punktų atlikti, todėl tik su vienu palikau.
+1) Surast visas sekas, kurios prasideda kodonu ATG ir baigiasi TAA/TGA/TAG.
+2) Surasti ilgiausią iš jų.
+3) Atrūšiuoti sekas, kurios >= 100.
+(lyg ir taip per paskaitą išsiaiškinom, ką reikia daryti šituose punktuose, tikiuosi nesuklydau)
+
+Kitų dalių nesugebėjau atlikt.
+Kode yra surašyti paaiškinimai, ką kurios funkcijos daro.
+Tikiuosi, kad kažkiek balų skirsite. Ačiū jums!
